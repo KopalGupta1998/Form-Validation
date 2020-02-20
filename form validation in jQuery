@@ -1,0 +1,151 @@
+<html>
+<head>
+    <title> jQuery </title>
+   <script type="text/javascript" src="jquery.min.js"></script>
+    <style type="text/css">
+      div
+        {
+            width:500px;
+            height:40px;
+            margin-left:50px;
+            margin-bottom:10px;
+            margin-top:5px;
+        }
+        label
+        {
+            font-size:130%;
+            float:left;
+            padding:5px;
+        }
+        body
+        {
+            margin: auto;
+        }
+        input
+        {
+            width:250px;
+            height:30px;
+           border-radius:5px;
+            border:2px grey solid;
+            padding:5px;
+            font-size:105%;
+            margin-left:10px
+        }
+        #email
+        {
+            position:relative;
+            left:110px;
+        }
+        #phone
+        {
+            position:relative;
+            left:22px;
+        }
+        #password
+        {
+             position:relative;
+            left:80px;
+        }
+        #confirmpassword
+        {
+             position:relative;
+            left:6px;
+        }
+        #submit
+        {
+            width:130px;
+            position:relative;
+            left:170px;
+            padding:5px;
+        }
+        #fail
+        {
+            color:red;
+        }
+        #success
+        {
+            display:none;
+            color:green;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="fail"> </div>
+    <div id="success"> Congratulations! you made it!</div>
+    <div>
+        <div>
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" placeholder="eg.yourname@gmail.com">
+            </div>
+        <div>
+    <label for="phone">Contact Number</label>
+    <input type="text" name"phone" id="phone" placeholder="0123456789">
+        </div>
+        <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" >
+     </div>
+        <div>
+    <label for="confirmpassword">Confirm Password</label>
+    <input type="password" name="confirmpassword" id="confirmpassword" >
+            </div>
+        <div>
+             <input type="submit" name="submit" id="submit" value="Sign In">
+        </div>
+        </div>
+    <script type="text/javascript">
+        function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+       return regex.test(email);
+      }
+     $("#submit").click(function(){
+         var errormsg="";
+         var emptyfield="";
+         if($("#email").val() == "")
+             {
+                 emptyfield+="Email";
+             }
+          if($("#phone").val() == "")
+             {
+                 emptyfield+="Contact Number";
+             }
+          if($("#password").val() == "")
+             {
+                 emptyfield+="Password";
+             }
+          if($("#confirmpassword").val() == "")
+             {
+                 emptyfield+="Confirm Password";
+             }
+         
+         if(isEmail($("#email").val()) == false )
+             {
+                 errormsg+="The email ID entered is not valid . ";
+             }
+         if($.isNumeric($("#phone").val()) == false)
+             {
+                 errormsg+=" The phone number entered is not numeric.";
+             }
+         if($("#password").val() != $("#confirmpassword").val())
+             {
+                 errormsg+=" The passwords do not match.";
+             }
+         if(emptyfield !="")
+             {
+                 errormsg="The empty fields are "+emptyfield+errormsg;
+             }
+         if(errormsg!="")
+             {
+                 $("#fail").html(errormsg);
+             }
+         else{
+             $("#success").css("display","block");
+            }
+     });
+    </script>
+    
+    
+</body>
+</html>
